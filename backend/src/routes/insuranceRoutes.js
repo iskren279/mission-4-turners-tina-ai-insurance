@@ -17,6 +17,7 @@ router.post("/chat", async (req, res) => {
     }
 
     // First interaction: Tina asks for permission.
+    // show this
     if (conversation.length === 0) {
       return res.json({
         response: OPT_IN_MESSAGE,
@@ -50,6 +51,7 @@ router.post("/chat", async (req, res) => {
     }
 
     // Send the conversation to Gemini after the initial opt-in.
+    // show this
     const response = await generateTinaResponse(conversation);
 
     res.json({

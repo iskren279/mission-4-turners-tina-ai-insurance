@@ -4,6 +4,7 @@ import "./App.css";
 const API_URL = "http://localhost:5000/api/insurance/chat";
 
 function App() {
+  // show this
   const [conversation, setConversation] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -22,6 +23,7 @@ function App() {
     setInput("");
     setLoading(true);
 
+    // show this
     try {
       const response = await fetch(API_URL, {
         method: "POST",

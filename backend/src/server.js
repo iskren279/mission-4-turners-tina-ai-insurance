@@ -9,6 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// show this
 app.use("/api/insurance", insuranceRoutes);
 
 app.get("/", (req, res) => {

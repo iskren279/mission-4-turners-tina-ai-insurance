@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./App.css";
 
-const API_URL = "http://localhost:5000/api/insurance/chat";
+const API_URL =
+  "https://mission-4-turners-tina-ai-insurance.onrender.com/api/insurance/chat";
 
 function App() {
-  // show this
   const [conversation, setConversation] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,6 @@ function App() {
     setInput("");
     setLoading(true);
 
-    // show this
     try {
       const response = await fetch(API_URL, {
         method: "POST",
@@ -79,6 +78,10 @@ function App() {
 
       const data = await response.json();
 
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong");
+      }
+
       setConversation([
         {
           role: "assistant",
@@ -87,6 +90,13 @@ function App() {
       ]);
     } catch (error) {
       console.error(error);
+
+      setConversation([
+        {
+          role: "assistant",
+          message: "Sorry, I couldn't connect to Tina right now.",
+        },
+      ]);
     } finally {
       setLoading(false);
     }
